@@ -12,8 +12,8 @@
   --green: #395d44;
   --green-dark: #2a4533;
   --green-light: #4e7a5c;
-  --gold: #c29a67;
-  --gold-light: #d4b48a;
+  --gold: #395d44;
+  --gold-light: #4e7a5c;
   --cream: #ffffff;
   --cream-dark: #f7f7f7;
   --ink: #231f20;
@@ -506,21 +506,47 @@ img {
 .product-visual {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 600px;
   position: relative;
   background: var(--green-dark);
+  display: flex;
+  flex-direction: column;
 }
 
 .product-visual img {
   width: 100%;
-  height: 100%;
+  height: 480px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   transition: transform 0.6s ease;
 }
 
 .product-visual:hover img {
-  transform: scale(1.04);
+  transform: scale(1.03);
+}
+
+.product-visual-banner {
+  background: var(--green-dark);
+  color: var(--white);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.product-visual-banner svg {
+  flex-shrink: 0;
+  color: #80ab82;
+}
+
+.product-visual-banner strong {
+  color: #a8d5aa;
+  font-weight: 700;
 }
 
 .product-cert {
@@ -606,13 +632,13 @@ img {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--gold);
+  background: var(--green);
   color: var(--white);
-  font-size: 7px;
+  font-size: 8px;
   font-style: normal;
   font-weight: 700;
-  letter-spacing: .1em;
-  padding: 3px 7px;
+  letter-spacing: .12em;
+  padding: 4px 9px;
   border-radius: 4px;
 }
 
@@ -1141,6 +1167,85 @@ footer {
   .section-heading {
     display: block;
   }
+
+
+/* ── POLISH PRODUCT SHOWCASE ── */
+.polish-product {
+  padding: 8vw 8vw;
+  background: #f8faf8;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.polish-header {
+  max-width: 720px;
+  margin-bottom: 4vw;
+}
+
+.polish-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.2;
+  margin: 10px 0 16px;
+  font-weight: 400;
+}
+
+.polish-header h2 em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.polish-header .lead-text {
+  font-size: 15px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+
+.polish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.polish-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 30px 24px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.polish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(57, 93, 68, 0.3);
+}
+
+.polish-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(57, 93, 68, 0.08);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.polish-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.polish-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
 
   .muted {
     margin-top: 14px;
