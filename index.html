@@ -32,15 +32,9 @@
       <a href="#dlaczego">Dlaczego my</a>
       <a href="#dostawa">Dostawa</a>
     </nav>
-    <button class="cart-button" id="cartOpen" type="button" aria-label="Otwórz koszyk">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 01-8 0" />
-      </svg>
-      Koszyk <span id="cartCount">0</span>
-    </button>
+    <a href="#zamowienie" class="cart-button" id="cartOpen" aria-label="Zamówienie">
+      Złóż zamówienie
+    </a>
   </header>
 
   <main id="top">
@@ -212,6 +206,56 @@
       </div>
     </section>
 
+    <!-- ── CHECKOUT SECTION ── -->
+    <section class="checkout-section" id="zamowienie" aria-labelledby="checkout-heading">
+      <div class="checkout-container">
+        <h2 id="checkout-heading">Podsumowanie i Zamówienie</h2>
+        
+        <div id="cartItems" class="cart-items">
+          <p class="empty">Nie wybrano pakietu. Zaznacz ilość powyżej.</p>
+        </div>
+
+        <div class="checkout-form">
+          <div class="checkout-row">
+            <span>Razem do zapłaty</span>
+            <strong id="cartTotal">0 PLN</strong>
+          </div>
+
+          <label>Sposób odbioru
+            <select id="fulfilment">
+              <option value="pickup">Odbiór własny — bezpłatnie</option>
+              <option value="delivery">Dostawa — koszt transportu ustalamy indywidualnie</option>
+            </select>
+          </label>
+
+          <label>Imię i nazwisko
+            <input id="customerName" autocomplete="name" required placeholder="Jan Kowalski">
+          </label>
+          <label>E-mail
+            <input id="customerEmail" type="email" autocomplete="email" required placeholder="jan@kowalski.pl">
+          </label>
+          <label>Telefon
+            <input id="customerPhone" type="tel" autocomplete="tel" required placeholder="+48 600 000 000">
+          </label>
+          <label>Kod pocztowy (do wyceny dostawy)
+            <input id="postcode" placeholder="00-000" autocomplete="postal-code">
+          </label>
+          <label>Uwagi do zamówienia
+            <textarea id="notes" rows="3" placeholder="Dodatkowe informacje..."></textarea>
+          </label>
+
+          <button class="button button-dark full" id="sendOrder" type="button" style="margin-top: 20px;">
+            Wyślij zamówienie
+          </button>
+
+          <p class="legal" style="margin-top: 16px;">
+            Po wysłaniu otrzymasz potwierdzenie e-mail. Szczegóły dostawy i płatności zostaną ustalone indywidualnie przez obsługę sklepu.
+          </p>
+          <p id="orderStatus" class="status"></p>
+        </div>
+      </div>
+    </section>
+
     <!-- ── POLISH PRODUCT SHOWCASE ── -->
     <section class="polish-product" id="polski-produkt" aria-labelledby="polish-heading">
       <div class="polish-header" data-animate>
@@ -301,57 +345,18 @@
     </address>
   </footer>
 
-  <!-- ── CART DRAWER ── -->
-  <aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="Koszyk">
-    <div class="drawer-head">
-      <h2>Twoje zamówienie</h2>
-      <button id="cartClose" type="button" aria-label="Zamknij koszyk">×</button>
-    </div>
-
-    <div id="cartItems" class="cart-items">
-      <p class="empty">Koszyk jest pusty.</p>
-    </div>
-
-    <div class="checkout">
-      <div class="checkout-row">
-        <span>Razem</span>
-        <strong id="cartTotal">0 PLN</strong>
+  <dialog id="successModal" class="success-modal">
+    <div class="modal-content">
+      <div class="success-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
       </div>
-
-      <label>Sposób odbioru
-        <select id="fulfilment">
-          <option value="pickup">Odbiór własny — bezpłatnie</option>
-          <option value="delivery">Dostawa — koszt potwierdzimy</option>
-        </select>
-      </label>
-
-      <label>Imię i nazwisko
-        <input id="customerName" autocomplete="name" required placeholder="Jan Kowalski">
-      </label>
-      <label>E-mail
-        <input id="customerEmail" type="email" autocomplete="email" required placeholder="jan@kowalski.pl">
-      </label>
-      <label>Telefon
-        <input id="customerPhone" type="tel" autocomplete="tel" required placeholder="+48 600 000 000">
-      </label>
-      <label>Kod pocztowy
-        <input id="postcode" placeholder="00-000" autocomplete="postal-code">
-      </label>
-      <label>Uwagi
-        <textarea id="notes" rows="3" placeholder="Dodatkowe informacje do zamówienia..."></textarea>
-      </label>
-
-      <button class="button button-dark full" id="sendOrder" type="button" style="margin-top: 20px;">
-        Wyślij zamówienie
-      </button>
-
-      <p class="legal" style="margin-top: 16px;">To demo nie pobiera płatności. Po wysłaniu otrzymasz potwierdzenie, a
-        szczegóły dostawy zostaną ustalone indywidualnie.</p>
-      <p id="orderStatus" class="status"></p>
+      <h3>Zamówienie przyjęte</h3>
+      <p>Proszę czekać, trwa przekierowanie do podsumowania...</p>
     </div>
-  </aside>
-
-  <div class="scrim" id="scrim"></div>
+  </dialog>
 
   <script src="/app.js"></script>
 </body>

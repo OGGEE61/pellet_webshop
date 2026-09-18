@@ -439,8 +439,10 @@ img {
 
 /* ── INTRO ── */
 .intro {
-  padding: 14vw 14vw 12vw;
-  max-width: 1200px;
+  padding: 8vw 8vw;
+  background: #f8faf8;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .intro h2,
@@ -935,65 +937,140 @@ footer {
   letter-spacing: .03em;
 }
 
-/* ── CART DRAWER ── */
-.drawer {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: min(520px, 100vw);
-  height: 100vh;
+/* ── CHECKOUT SECTION ── */
+.checkout-section {
+  padding: 6vw 5vw 8vw;
+  background: var(--cream);
+}
+
+.checkout-container {
+  max-width: 680px;
+  margin: 0 auto;
   background: var(--white);
-  z-index: 200;
-  transform: translateX(100%);
-  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
-  overflow: auto;
-  border-left: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
-.drawer.open {
-  transform: translateX(0);
+.checkout-container h2 {
+  font-size: 28px;
+  margin: 0 0 32px;
+  font-weight: 800;
+  color: var(--ink);
 }
 
-.drawer-head {
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea {
+  font-family: var(--sans);
+  font-size: 15px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  color: var(--ink);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus,
+.checkout-form textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(57, 93, 68, 0.1);
+}
+
+.checkout-form input.error,
+.checkout-form select.error,
+.checkout-form textarea.error {
+  border-color: #d93838;
+  box-shadow: 0 0 0 3px rgba(217, 56, 56, 0.1);
+}
+
+.checkout-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
   border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.checkout-row strong {
+  font-size: 24px;
+  color: var(--green);
+}
+
+.legal {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ── SUCCESS MODAL ── */
+.success-modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  background: transparent;
+}
+
+.success-modal::backdrop {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
   background: var(--white);
-  z-index: 1;
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  max-width: 400px;
+  border: 1px solid var(--border);
 }
 
-.drawer-head h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: -.01em;
-}
-
-.drawer-head button {
-  width: 36px;
-  height: 36px;
-  background: var(--cream-dark);
-  border: 0;
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(57, 93, 68, 0.1);
+  color: var(--green);
   border-radius: 50%;
-  font-size: 22px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
-  color: var(--ink);
-  transition: background var(--transition);
+  margin: 0 auto 24px;
 }
 
-.drawer-head button:hover {
-  background: var(--ink);
-  color: var(--white);
+.modal-content h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: var(--ink);
 }
+
+.modal-content p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
 
 .cart-items {
   padding: 24px 28px;
@@ -1113,18 +1190,7 @@ footer {
 }
 
 /* ── SCRIM ── */
-.scrim {
-  position: fixed;
-  inset: 0;
-  background: rgba(35, 31, 32, .45);
-  z-index: 150;
-  display: none;
-  backdrop-filter: blur(3px);
-}
 
-.scrim.open {
-  display: block;
-}
 
 
 /* ── POLISH PRODUCT SHOWCASE ── */

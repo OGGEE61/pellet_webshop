@@ -69,9 +69,8 @@ function updateProduct() {
 function renderCart() {
   const el = $("cartItems");
   if (!state.cartQty) {
-    el.innerHTML = '<p class="empty">Koszyk jest pusty.</p>';
+    el.innerHTML = '<p class="empty">Nie wybrano pakietu. Zaznacz ilość powyżej i dodaj do zamówienia.</p>';
     $("cartTotal").textContent = "0 PLN";
-    $("cartCount").textContent = "0";
     return;
   }
   const c = calc(state.cartQty);
@@ -87,24 +86,7 @@ function renderCart() {
       </div>
     </div>`;
   $("cartTotal").textContent  = money(c.total);
-  $("cartCount").textContent  = state.cartQty;
   $("removeCart").onclick = () => { state.cartQty = 0; renderCart(); };
-}
-
-// ── Cart open / close ──────────────────────────────────────
-function openCart() {
-  $("cartDrawer").classList.add("open");
-  $("scrim").classList.add("open");
-  $("cartDrawer").setAttribute("aria-hidden", "false");
-  renderCart();
-  // Trap focus for accessibility
-  setTimeout(() => $("cartClose").focus(), 50);
-}
-
-function closeCart() {
-  $("cartDrawer").classList.remove("open");
-  $("scrim").classList.remove("open");
-  $("cartDrawer").setAttribute("aria-hidden", "true");
 }
 
 // ── Package card clicks ────────────────────────────────────
@@ -115,20 +97,29 @@ document.querySelectorAll(".package-card").forEach(btn => {
   });
 });
 
-// ── Stepper ────────────────────────────────────────────────
+// ── Stepper & Slider ───────────────────────────────────────
 $("minus").onclick = () => { state.qty = Math.max(1, state.qty - 1); updateProduct(); };
 $("plus").onclick  = () => { state.qty += 1; updateProduct(); };
 
-// ── Cart actions ───────────────────────────────────────────
-$("addToCart").onclick = () => { state.cartQty = state.qty; openCart(); };
-$("cartOpen").onclick  = openCart;
-$("cartClose").onclick = closeCart;
-$("scrim").onclick     = closeCart;
-
-// Close drawer on Escape key
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeCart();
+$("qty").addEventListener("input", (e) => {
+  const val = parseInt(e.target.value, 10);
+  if (!isNaN(val) && val > 0) {
+    state.qty = val;
+    updateProduct();
+  }
 });
+
+$("qtySlider").addEventListener("input", (e) => {
+  state.qty = parseInt(e.target.value, 10);
+  updateProduct();
+});
+
+// ── Cart actions ───────────────────────────────────────────
+$("addToCart").onclick = () => { 
+  state.cartQty = state.qty; 
+  renderCart();
+  document.getElementById("zamowienie").scrollIntoView({ behavior: "smooth" });
+};
 
 // ── Form Validation & Formatters ───────────────────────────
 $("customerPhone").addEventListener("input", (e) => {
@@ -241,26 +232,26 @@ $("sendOrder").onclick = async () => {
 
     if (response.status === 404) {
       // API endpoint is missing (Cloudflare functions not built), mock success for demo
-      status.innerHTML = `Dziękujemy. Zamówienie <strong>PEL-DEMO-${Math.floor(Math.random() * 10000)}</strong> zostało przyjęte.
-        Potwierdzenie wysłano na <strong>${customer.email}</strong>. Skontaktujemy się w sprawie realizacji.`;
-      state.cartQty = 0;
-      renderCart();
-      ["customerName", "customerEmail", "customerPhone", "postcode", "notes"]
-        .forEach(id => $(id).value = "");
-      return;
-    }
-
-    if (!response.ok) {
+      data = { order_number: `PEL-DEMO-${Math.floor(Math.random() * 10000)}` };
+    } else if (!response.ok) {
       throw new Error(data.error || `Błąd serwera: ${response.status}`);
     }
 
-    status.innerHTML = `Dziękujemy. Zamówienie <strong>${data.order_number}</strong> zostało przyjęte.
-      Potwierdzenie wysłano na <strong>${customer.email}</strong>. Skontaktujemy się w sprawie realizacji.`;
-
+    const modal = document.getElementById("successModal");
+    if (modal && typeof modal.showModal === "function") {
+      modal.showModal();
+    }
+    
     state.cartQty = 0;
     renderCart();
     ["customerName", "customerEmail", "customerPhone", "postcode", "notes"]
       .forEach(id => $(id).value = "");
+
+    // Redirect after 5 seconds
+    setTimeout(() => {
+      window.location.href = `/potwierdzenie.html?order=${data.order_number}`;
+    }, 5000);
+
   } catch (e) {
     status.textContent = e.name + ": " + e.message;
   } finally {
