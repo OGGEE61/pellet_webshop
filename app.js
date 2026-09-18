@@ -48,6 +48,14 @@ function pluralizePallets(n) {
   return "palet";
 }
 
+function pluralizeBags(n) {
+  if (n === 1) return "worek";
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return "worki";
+  return "worków";
+}
+
 // ── Product UI ─────────────────────────────────────────────
 function updateProduct() {
   const c = calc(state.qty, state.mode);
@@ -71,21 +79,28 @@ function updateProduct() {
     else next = { qty: 65, price: 2350, isPallet: true };
 
     if (next) {
+      const diff = next.qty - state.qty;
       if (next.isPallet) {
-        $("saving").textContent = `Dodaj jeszcze ${next.qty - state.qty} worków do pełnej palety, aby uzyskać najlepszą cenę (36,15 PLN / worek).`;
+        $("saving").textContent = `Dodaj jeszcze ${diff} ${pluralizeBags(diff)} do pełnej palety, aby uzyskać najlepszą cenę (36,15 PLN / worek).`;
       } else {
         const extra = Math.max(0, next.price - c.total);
-        $("saving").textContent = `Dodaj ${next.qty - state.qty} worków, aby wejść w kolejny próg. Szacunkowo +${money(extra)}.`;
+        $("saving").textContent = `Dodaj ${diff} ${pluralizeBags(diff)}, aby wejść w kolejny próg. Szacunkowo +${money(extra)}.`;
       }
     }
   }
 
   $("price").textContent  = money(c.total);
   $("perKg").textContent  = money(c.total / c.kg);
-  $("tierLabel").textContent = c.label;
+  
+  if (state.mode === 'bags') {
+    $("tierLabel").textContent = `Wybrano: ${state.qty} ${pluralizeBags(state.qty)}`;
+  } else {
+    $("tierLabel").textContent = c.label;
+  }
+  
   $("tierHint").textContent  = state.mode === 'pallets' 
     ? "Najlepsza oferta cenowa." 
-    : "Cena zależy od ilości worków.";
+    : `Cena pakietowa (${c.label})`;
 
   // Active card highlight
   if (state.mode === 'bags') {
@@ -129,7 +144,7 @@ function renderCart() {
   
   const desc = state.cartMode === 'pallets'
     ? `${c.bags} worków · ${c.kg} kg`
-    : `${state.cartQty} worków · ${c.kg} kg`;
+    : `${state.cartQty} ${pluralizeBags(state.cartQty)} · ${c.kg} kg`;
 
   el.innerHTML = `
     <div class="cart-line">
