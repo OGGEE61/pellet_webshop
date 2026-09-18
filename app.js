@@ -118,7 +118,16 @@ $("qtySlider").addEventListener("input", (e) => {
 $("addToCart").onclick = () => { 
   state.cartQty = state.qty; 
   renderCart();
-  document.getElementById("zamowienie").scrollIntoView({ behavior: "smooth" });
+  $("zamowienie").showModal();
+};
+
+$("cartOpen").onclick = (e) => {
+  e.preventDefault();
+  $("zamowienie").showModal();
+};
+
+$("closeCheckout").onclick = () => {
+  $("zamowienie").close();
 };
 
 // ── Form Validation & Formatters ───────────────────────────

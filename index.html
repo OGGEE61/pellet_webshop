@@ -206,10 +206,13 @@
       </div>
     </section>
 
-    <!-- ── CHECKOUT SECTION ── -->
-    <section class="checkout-section" id="zamowienie" aria-labelledby="checkout-heading">
+    <!-- ── CHECKOUT MODAL ── -->
+    <dialog class="checkout-modal" id="zamowienie" aria-labelledby="checkout-heading">
       <div class="checkout-container">
-        <h2 id="checkout-heading">Podsumowanie i Zamówienie</h2>
+        <div class="checkout-header">
+          <h2 id="checkout-heading">Podsumowanie i Zamówienie</h2>
+          <button id="closeCheckout" type="button" aria-label="Zamknij" class="close-btn">&times;</button>
+        </div>
         
         <div id="cartItems" class="cart-items">
           <p class="empty">Nie wybrano pakietu. Zaznacz ilość powyżej.</p>
@@ -254,7 +257,7 @@
           <p id="orderStatus" class="status"></p>
         </div>
       </div>
-    </section>
+    </dialog>
 
     <!-- ── POLISH PRODUCT SHOWCASE ── -->
     <section class="polish-product" id="polski-produkt" aria-labelledby="polish-heading">

@@ -937,27 +937,60 @@ footer {
   letter-spacing: .03em;
 }
 
-/* ── CHECKOUT SECTION ── */
-.checkout-section {
-  padding: 6vw 5vw 8vw;
-  background: var(--cream);
+/* ── CHECKOUT MODAL ── */
+.checkout-modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  background: transparent;
+  max-width: 90vw;
+  width: 680px;
+}
+
+.checkout-modal::backdrop {
+  background: rgba(35, 31, 32, .6);
+  backdrop-filter: blur(5px);
 }
 
 .checkout-container {
-  max-width: 680px;
-  margin: 0 auto;
   background: var(--white);
   padding: 48px;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
 }
 
-.checkout-container h2 {
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.checkout-header h2 {
   font-size: 28px;
-  margin: 0 0 32px;
+  margin: 0;
   font-weight: 800;
   color: var(--ink);
+}
+
+.close-btn {
+  background: var(--cream-dark);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: background var(--transition);
+}
+
+.close-btn:hover {
+  background: var(--ink);
+  color: var(--white);
 }
 
 .checkout-form label {

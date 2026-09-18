@@ -20,10 +20,12 @@ function escapeHtml(value = "") {
 
 export async function onRequestPost(context) {
   try {
+    console.log("Received new order request.");
     const body = await context.request.json();
     const { customer, items, total_pln, weight_kg, shipping } = body || {};
 
     if (!customer?.name || !customer?.email || !customer?.phone || !items?.length) {
+      console.error("Validation failed. Missing required fields in body:", { customer, items });
       return Response.json({ error: "Brak wymaganych danych zamówienia." }, { status: 400 });
     }
 
@@ -31,7 +33,14 @@ export async function onRequestPost(context) {
     const orderEmail = context.env.ORDER_EMAIL;
     const from = context.env.ORDER_FROM;
 
+    console.log("Checking Env Vars:", { 
+      hasApiKey: !!apiKey, 
+      orderEmail: orderEmail, 
+      from: from 
+    });
+
     if (!apiKey || !orderEmail || !from) {
+      console.error("Missing email configuration");
       return Response.json({
         error: "Brak konfiguracji e-mail. Ustaw RESEND_API_KEY, ORDER_EMAIL i ORDER_FROM w Cloudflare."
       }, { status: 500 });
@@ -105,6 +114,7 @@ export async function onRequestPost(context) {
     `;
 
     // One Resend API call sends the internal order email and customer confirmation.
+    console.log("Sending internal order email via Resend to", orderEmail);
     const resend = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -122,9 +132,12 @@ export async function onRequestPost(context) {
 
     if (!resend.ok) {
       const errorText = await resend.text();
+      console.error("Resend internal email failed:", resend.status, errorText);
       return Response.json({ error: `Błąd wysyłki e-mail do firmy: ${errorText}` }, { status: 502 });
     }
+    console.log("Internal email sent successfully.");
 
+    console.log("Sending customer confirmation email via Resend to", customer.email);
     const customerMail = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -143,14 +156,17 @@ export async function onRequestPost(context) {
 
     if (!customerMail.ok) {
       const errorText = await customerMail.text();
+      console.error("Resend customer email failed:", customerMail.status, errorText);
       return Response.json({
         error: `Zamówienie zapisane, ale nie udało się wysłać potwierdzenia do klienta: ${errorText}`,
         order_number: orderNumber
       }, { status: 502 });
     }
+    console.log("Customer email sent successfully.");
 
     return Response.json({ ok: true, order_number: orderNumber });
   } catch (error) {
+    console.error("Order processing error caught:", error);
     return Response.json({ error: "Nieprawidłowe żądanie." }, { status: 400 });
   }
 }
