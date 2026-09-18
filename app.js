@@ -229,8 +229,19 @@ $("sendOrder").onclick = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "Nie udało się wysłać zamówienia.");
+    
+    let text = "";
+    let data = {};
+    try {
+      text = await response.text();
+      data = text ? JSON.parse(text) : {};
+    } catch (err) {
+      throw new Error(`Parse error (${response.status}): ${text.substring(0, 50)}...`);
+    }
+
+    if (!response.ok) {
+      throw new Error(data.error || `Błąd serwera: ${response.status}`);
+    }
 
     status.innerHTML = `Dziękujemy. Zamówienie <strong>${data.order_number}</strong> zostało przyjęte.
       Potwierdzenie wysłano na <strong>${customer.email}</strong>. Skontaktujemy się w sprawie realizacji.`;
@@ -240,7 +251,7 @@ $("sendOrder").onclick = async () => {
     ["customerName", "customerEmail", "customerPhone", "postcode", "notes"]
       .forEach(id => $(id).value = "");
   } catch (e) {
-    status.textContent = e.message;
+    status.textContent = e.name + ": " + e.message;
   } finally {
     $("sendOrder").disabled = false;
   }
