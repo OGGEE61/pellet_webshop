@@ -40,6 +40,14 @@ function calc(qty, mode = state.mode) {
   return { ...t, total, bags: qty, kg: qty * 15 };
 }
 
+function pluralizePallets(n) {
+  if (n === 1) return "paletę";
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return "palety";
+  return "palet";
+}
+
 // ── Product UI ─────────────────────────────────────────────
 function updateProduct() {
   const c = calc(state.qty, state.mode);
@@ -51,7 +59,7 @@ function updateProduct() {
   if (state.mode === 'pallets') {
     $("qtySlider").max = 24;
     $("weight").textContent = `${c.kg} kg (${c.bags} worków)`;
-    $("saving").textContent = `Zamawiasz ${state.qty} palet. Każda paleta to 65 worków.`;
+    $("saving").textContent = `Zamawiasz ${state.qty} ${pluralizePallets(state.qty)}. Każda paleta to 65 worków.`;
   } else {
     $("qtySlider").max = 64;
     $("weight").textContent = `${c.kg} kg`;
@@ -80,9 +88,11 @@ function updateProduct() {
     : "Cena zależy od ilości worków.";
 
   // Active card highlight
-  document.querySelectorAll(`.package-grid#grid-${state.mode} .package-card`).forEach(btn => {
-    btn.classList.toggle("active", Number(btn.dataset.qty) === state.qty);
-  });
+  if (state.mode === 'bags') {
+    document.querySelectorAll(`#grid-bags .package-card`).forEach(btn => {
+      btn.classList.toggle("active", Number(btn.dataset.qty) === state.qty);
+    });
+  }
 }
 
 // ── Mode Toggle ────────────────────────────────────────────
@@ -92,7 +102,6 @@ $("mode-bags").onclick = () => {
   $("mode-bags").classList.add("active");
   $("mode-pallets").classList.remove("active");
   $("grid-bags").classList.add("active");
-  $("grid-pallets").classList.remove("active");
   updateProduct();
 };
 
@@ -101,7 +110,6 @@ $("mode-pallets").onclick = () => {
   state.qty = 1; // Default for pallets
   $("mode-pallets").classList.add("active");
   $("mode-bags").classList.remove("active");
-  $("grid-pallets").classList.add("active");
   $("grid-bags").classList.remove("active");
   updateProduct();
 };
