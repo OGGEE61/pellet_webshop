@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pellet Drzewny — Sklep Internetowy | Ciepło, które ma sens</title>
+  <meta name="description" content="Pellet drzewny wysokiej jakości pakowany w worki 15 kg. Zamów online — im więcej zamawiasz, tym mniej płacisz za kilogram. Odbiór własny lub dostawa.">
+  <meta name="theme-color" content="#395d44">
+  <link rel="icon" href="/assets/logo.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap">
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#top" aria-label="Strona główna">
+      <img src="/assets/logo.svg" alt="Logo">
+    </a>
+    <nav aria-label="Nawigacja główna">
+      <a href="#produkt">Pellet</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="#dostawa">Dostawa</a>
+    </nav>
+    <button class="cart-button" id="cartOpen" type="button" aria-label="Otwórz koszyk">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Koszyk <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main id="top">
+
+    <!-- ── HERO ── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="eyebrow">Pellet Drzewny · 15 kg · ENplus A1</p>
+        <h1 id="hero-heading">Ciepło, które<br><em>ma sens.</em></h1>
+        <p class="lead">Pellet wysokiej jakości, pakowany w worki 15 kg. Im więcej zamawiasz, tym mniej płacisz za kilogram — bez kompromisów.</p>
+        <a class="button button-dark" href="#produkt" id="hero-cta">Zobacz ceny</a>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>500+</strong>
+            <span>Ton dostarczone</span>
+          </div>
+          <div class="hero-stat">
+            <strong>ENplus A1</strong>
+            <span>Certyfikat jakości</span>
+          </div>
+          <div class="hero-stat">
+            <strong>48h</strong>
+            <span>Czas realizacji</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image" role="img" aria-label="Worki pelletu drzewnego na palecie">
+        <img
+          src="/assets/hero-pellet.jpg"
+          alt="Worki pelletu drzewnego 15 kg ułożone na drewnianej palecie"
+          width="900" height="600"
+          loading="eager"
+          fetchpriority="high"
+        >
+        <div class="hero-badge">
+          <strong>Pellet A1</strong>
+          <small>Premium Wood Pellets</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TRUST BAR ── -->
+    <div class="trust-bar" aria-label="Nasze certyfikaty i gwarancje">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Certyfikat ENplus A1
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        Dostawa w 48h
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Odbiór własny bezpłatny
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Wilgotność &lt; 10%
+      </div>
+    </div>
+
+    <!-- ── INTRO ── -->
+    <section class="intro" id="dlaczego" aria-labelledby="intro-heading">
+      <p class="eyebrow" data-animate data-delay="1">Prosty wybór</p>
+      <h2 id="intro-heading" data-animate data-delay="2">Kupujesz więcej.<br><em>Płacisz mniej.</em></h2>
+      <p data-animate data-delay="3">Nie komplikujemy zakupów. Wybierz gotowy pakiet albo ustaw własną ilość worków. Cena automatycznie dopasuje się do wielkości zamówienia — bez ukrytych kosztów, bez minimalnej wartości zamówienia.</p>
+    </section>
+
+    <!-- ── PRODUCT ── -->
+    <section class="product-section" id="produkt" aria-labelledby="product-heading">
+      <div class="section-heading" data-animate>
+        <div>
+          <p class="eyebrow">Nasz pellet</p>
+          <h2 id="product-heading">Pellet drzewny<br>15 kg</h2>
+        </div>
+        <p class="muted">Demo handlowe — ceny do potwierdzenia przy składaniu zamówienia.</p>
+      </div>
+
+      <div class="product-layout">
+        <!-- Visual -->
+        <figure class="product-visual" data-animate data-delay="1">
+          <img
+            src="/assets/hero-pellet.jpg"
+            alt="Worki pelletu drzewnego 15 kg na palecie"
+            width="900" height="600"
+            loading="lazy"
+          >
+          <div class="product-cert">
+            <strong>ENplus</strong>
+            A1 Certified
+          </div>
+        </figure>
+
+        <!-- Purchase panel -->
+        <div class="purchase-panel" data-animate data-delay="2">
+
+          <!-- Package cards -->
+          <div class="package-grid" role="group" aria-label="Wybierz pakiet">
+            <button class="package-card" data-qty="5" data-price="365" id="pkg-5" type="button">
+              <span>Pakiet</span>
+              <strong>5</strong>
+              <span>worków</span>
+              <b>365 PLN</b>
+              <small>73,00 PLN / worek</small>
+            </button>
+            <button class="package-card featured" data-qty="32" data-price="1340" id="pkg-32" type="button">
+              <span>Pakiet</span>
+              <strong>32</strong>
+              <span>worki</span>
+              <b>1 340 PLN</b>
+              <small>41,88 PLN / worek</small>
+              <i>Popularne</i>
+            </button>
+            <button class="package-card" data-qty="65" data-price="2350" id="pkg-65" type="button">
+              <span>Pełna paleta</span>
+              <strong>65</strong>
+              <span>worków</span>
+              <b>2 350 PLN</b>
+              <small>36,15 PLN / worek</small>
+            </button>
+          </div>
+
+          <!-- Custom quantity -->
+          <div class="quantity-box">
+            <div>
+              <p class="eyebrow">Własna ilość</p>
+              <strong id="tierLabel">Wybierz pakiet</strong>
+              <span id="tierHint">Cena zostanie obliczona automatycznie.</span>
+            </div>
+            <div class="stepper" role="group" aria-label="Ilość worków">
+              <button id="minus" type="button" aria-label="Zmniejsz ilość">−</button>
+              <output id="qty" aria-live="polite" aria-label="Ilość">5</output>
+              <button id="plus" type="button" aria-label="Zwiększ ilość">+</button>
+            </div>
+          </div>
+
+          <!-- Price summary -->
+          <div class="price-summary" aria-label="Podsumowanie ceny">
+            <span>Waga</span>         <strong id="weight">75 kg</strong>
+            <span>Cena</span>         <strong id="price">365 PLN</strong>
+            <span>Cena / kg</span>    <strong id="perKg">4,87 PLN</strong>
+          </div>
+
+          <!-- Saving hint -->
+          <div class="saving" id="saving" aria-live="polite">
+            Kup 27 worków więcej, aby wejść w kolejny próg cenowy.
+          </div>
+
+          <button class="button button-dark full" id="addToCart" type="button">
+            Dodaj do zamówienia
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DELIVERY ── -->
+    <section class="delivery" id="dostawa" aria-labelledby="delivery-heading">
+      <div data-animate>
+        <p class="eyebrow">Odbiór</p>
+        <h2 id="delivery-heading">Ty wybierasz,<br><em>jak odbierasz.</em></h2>
+      </div>
+      <div class="delivery-copy" data-animate data-delay="2">
+        <div>
+          <span>01</span>
+          <strong>Odbiór własny</strong>
+          <p>Bezpłatny odbiór. Szczegóły miejsca i terminu potwierdzimy po złożeniu zamówienia.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <strong>Dostawa</strong>
+          <p>Koszt transportu zależy od lokalizacji i liczby palet. Podaj kod pocztowy — wycenimy dostawę przed realizacją.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-brand">Pellet · Premium Wood Pellets</span>
+    <span class="footer-meta">Demo webshop · Przygotowane pod Shopify</span>
+  </footer>
+
+  <!-- ── CART DRAWER ── -->
+  <aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="Koszyk">
+    <div class="drawer-head">
+      <h2>Twoje zamówienie</h2>
+      <button id="cartClose" type="button" aria-label="Zamknij koszyk">×</button>
+    </div>
+
+    <div id="cartItems" class="cart-items">
+      <p class="empty">Koszyk jest pusty.</p>
+    </div>
+
+    <div class="checkout">
+      <div class="checkout-row">
+        <span>Razem</span>
+        <strong id="cartTotal">0 PLN</strong>
+      </div>
+
+      <label>Sposób odbioru
+        <select id="fulfilment">
+          <option value="pickup">Odbiór własny — bezpłatnie</option>
+          <option value="delivery">Dostawa — koszt potwierdzimy</option>
+        </select>
+      </label>
+
+      <label>Imię i nazwisko
+        <input id="customerName" autocomplete="name" required placeholder="Jan Kowalski">
+      </label>
+      <label>E-mail
+        <input id="customerEmail" type="email" autocomplete="email" required placeholder="jan@kowalski.pl">
+      </label>
+      <label>Telefon
+        <input id="customerPhone" type="tel" autocomplete="tel" required placeholder="+48 600 000 000">
+      </label>
+      <label>Kod pocztowy
+        <input id="postcode" placeholder="00-000" autocomplete="postal-code">
+      </label>
+      <label>Uwagi
+        <textarea id="notes" rows="3" placeholder="Dodatkowe informacje do zamówienia..."></textarea>
+      </label>
+
+      <button class="button button-dark full" id="sendOrder" type="button" style="margin-top: 20px;">
+        Wyślij zamówienie
+      </button>
+
+      <p class="legal" style="margin-top: 16px;">To demo nie pobiera płatności. Po wysłaniu otrzymasz potwierdzenie, a szczegóły dostawy zostaną ustalone indywidualnie.</p>
+      <p id="orderStatus" class="status"></p>
+    </div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
