@@ -4,7 +4,7 @@
    ============================================================ */
 
 // ── State ──────────────────────────────────────────────────
-const state = { qty: 5, cartQty: 0 };
+const state = { qty: 5, mode: 'bags', cartQty: 0, cartMode: 'bags' };
 
 // ── Pricing tiers ──────────────────────────────────────────
 const tiers = [
@@ -22,48 +22,89 @@ function tierFor(qty) {
   return tiers.slice().reverse().find(t => qty >= t.min);
 }
 
-function calc(qty) {
+function calc(qty, mode = state.mode) {
+  if (mode === 'pallets') {
+    return {
+      label: "Cena paletowa",
+      total: qty * 2350,
+      bags: qty * 65,
+      kg: qty * 65 * 15
+    };
+  }
+  
   const t = tierFor(qty);
   let total = qty * t.price;
-  // Snap exact package prices to avoid floating-point drift
-  if (qty === 5)  total = 365;
+  if (qty === 1) total = 75;
+  if (qty === 5) total = 365;
   if (qty === 32) total = 1340;
-  if (qty === 65) total = 2350;
-  return { ...t, total };
+  return { ...t, total, bags: qty, kg: qty * 15 };
 }
 
 // ── Product UI ─────────────────────────────────────────────
 function updateProduct() {
-  const c = calc(state.qty);
-  $("qty").value       = state.qty;
+  const c = calc(state.qty, state.mode);
+  
+  $("qty").value = state.qty;
   $("qty").textContent = state.qty;
-  $("weight").textContent = `${state.qty * 15} kg`;
-  $("price").textContent  = money(c.total);
-  $("perKg").textContent  = money(c.total / (state.qty * 15));
-  $("tierLabel").textContent = c.label;
-  $("tierHint").textContent  = state.qty >= 65
-    ? "Cena paletowa — najlepsza oferta."
-    : "Cena zależy od ilości worków.";
-
-  // Next tier hint
-  let next = null;
-  if (state.qty < 5)  next = { qty: 5,  price: 365 };
-  else if (state.qty < 32) next = { qty: 32, price: 1340 };
-  else if (state.qty < 65) next = { qty: 65, price: 2350 };
-
-  if (next) {
-    const extra = Math.max(0, next.price - c.total);
-    $("saving").textContent =
-      `Dodaj ${next.qty - state.qty} worków, aby wejść w kolejny próg. Szacunkowo +${money(extra)}.`;
+  
+  // Update texts based on mode
+  if (state.mode === 'pallets') {
+    $("qtySlider").max = 24;
+    $("weight").textContent = `${c.kg} kg (${c.bags} worków)`;
+    $("saving").textContent = `Zamawiasz ${state.qty} palet. Każda paleta to 65 worków.`;
   } else {
-    $("saving").textContent = "Masz najlepszą cenę paletową — 36,15 PLN / worek i 2,41 PLN / kg.";
+    $("qtySlider").max = 64;
+    $("weight").textContent = `${c.kg} kg`;
+    
+    // Next tier hint for bags
+    let next = null;
+    if (state.qty < 5)  next = { qty: 5,  price: 365 };
+    else if (state.qty < 32) next = { qty: 32, price: 1340 };
+    else next = { qty: 65, price: 2350, isPallet: true };
+
+    if (next) {
+      if (next.isPallet) {
+        $("saving").textContent = `Dodaj jeszcze ${next.qty - state.qty} worków do pełnej palety, aby uzyskać najlepszą cenę (36,15 PLN / worek).`;
+      } else {
+        const extra = Math.max(0, next.price - c.total);
+        $("saving").textContent = `Dodaj ${next.qty - state.qty} worków, aby wejść w kolejny próg. Szacunkowo +${money(extra)}.`;
+      }
+    }
   }
 
+  $("price").textContent  = money(c.total);
+  $("perKg").textContent  = money(c.total / c.kg);
+  $("tierLabel").textContent = c.label;
+  $("tierHint").textContent  = state.mode === 'pallets' 
+    ? "Najlepsza oferta cenowa." 
+    : "Cena zależy od ilości worków.";
+
   // Active card highlight
-  document.querySelectorAll(".package-card").forEach(btn => {
+  document.querySelectorAll(`.package-grid#grid-${state.mode} .package-card`).forEach(btn => {
     btn.classList.toggle("active", Number(btn.dataset.qty) === state.qty);
   });
 }
+
+// ── Mode Toggle ────────────────────────────────────────────
+$("mode-bags").onclick = () => {
+  state.mode = 'bags';
+  state.qty = 5; // Default for bags
+  $("mode-bags").classList.add("active");
+  $("mode-pallets").classList.remove("active");
+  $("grid-bags").classList.add("active");
+  $("grid-pallets").classList.remove("active");
+  updateProduct();
+};
+
+$("mode-pallets").onclick = () => {
+  state.mode = 'pallets';
+  state.qty = 1; // Default for pallets
+  $("mode-pallets").classList.add("active");
+  $("mode-bags").classList.remove("active");
+  $("grid-pallets").classList.add("active");
+  $("grid-bags").classList.remove("active");
+  updateProduct();
+};
 
 // ── Cart rendering ─────────────────────────────────────────
 function renderCart() {
@@ -73,12 +114,20 @@ function renderCart() {
     $("cartTotal").textContent = "0 PLN";
     return;
   }
-  const c = calc(state.cartQty);
+  const c = calc(state.cartQty, state.cartMode);
+  const title = state.cartMode === 'pallets' 
+    ? `Pellet drzewny — Paleta (${state.cartQty} szt.)` 
+    : `Pellet drzewny — 15 kg`;
+  
+  const desc = state.cartMode === 'pallets'
+    ? `${c.bags} worków · ${c.kg} kg`
+    : `${state.cartQty} worków · ${c.kg} kg`;
+
   el.innerHTML = `
     <div class="cart-line">
       <div>
-        <strong>Pellet drzewny — 15 kg</strong>
-        <small>${state.cartQty} worków · ${state.cartQty * 15} kg</small>
+        <strong>${title}</strong>
+        <small>${desc}</small>
       </div>
       <div style="text-align:right">
         <strong>${money(c.total)}</strong>
@@ -99,12 +148,17 @@ document.querySelectorAll(".package-card").forEach(btn => {
 
 // ── Stepper & Slider ───────────────────────────────────────
 $("minus").onclick = () => { state.qty = Math.max(1, state.qty - 1); updateProduct(); };
-$("plus").onclick  = () => { state.qty += 1; updateProduct(); };
+$("plus").onclick  = () => { 
+  const max = state.mode === 'pallets' ? 24 : 64;
+  state.qty = Math.min(max, state.qty + 1); 
+  updateProduct(); 
+};
 
 $("qty").addEventListener("input", (e) => {
   const val = parseInt(e.target.value, 10);
+  const max = state.mode === 'pallets' ? 24 : 64;
   if (!isNaN(val) && val > 0) {
-    state.qty = val;
+    state.qty = Math.min(max, val);
     updateProduct();
   }
 });
@@ -117,6 +171,7 @@ $("qtySlider").addEventListener("input", (e) => {
 // ── Cart actions ───────────────────────────────────────────
 $("addToCart").onclick = () => { 
   state.cartQty = state.qty; 
+  state.cartMode = state.mode;
   renderCart();
   $("zamowienie").showModal();
 };
@@ -204,12 +259,17 @@ $("sendOrder").onclick = async () => {
     return;
   }
 
-  const c = calc(state.cartQty);
+  const c = calc(state.cartQty, state.cartMode);
+  
+  const items = state.cartMode === 'pallets' 
+    ? [{ title: "Pellet drzewny — Paleta (65 worków)", quantity: state.cartQty, unit_weight_kg: 975 }]
+    : [{ title: "Pellet drzewny — worek 15 kg", quantity: state.cartQty, unit_weight_kg: 15 }];
+
   const payload = {
     customer,
-    items: [{ title: "Pellet drzewny — worek 15 kg", quantity: state.cartQty, unit_weight_kg: 15 }],
+    items,
     total_pln:  Number(c.total.toFixed(2)),
-    weight_kg:  state.cartQty * 15,
+    weight_kg:  c.kg,
     shipping: customer.fulfilment === "pickup"
       ? { type: "pickup",   price_pln: 0 }
       : { type: "delivery", price_pln: null }

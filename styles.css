@@ -580,11 +580,50 @@ img {
   padding: 4px 0;
 }
 
+/* Mode toggle */
+.mode-toggle {
+  display: flex;
+  background: var(--cream);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.mode-toggle button {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition);
+  opacity: 0.6;
+}
+
+.mode-toggle button.active {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  opacity: 1;
+}
+
+.mode-toggle button:hover:not(.active) {
+  opacity: 0.8;
+}
+
 .package-grid {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 0;
+}
+
+.package-grid.active {
+  display: grid;
 }
 
 .package-card {
@@ -1263,6 +1302,51 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
+
+/* ── MODE TOGGLE ── */
+.mode-toggle {
+  display: flex;
+  background: var(--cream);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.mode-toggle button {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition);
+  opacity: 0.6;
+}
+
+.mode-toggle button.active {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  opacity: 1;
+}
+
+.mode-toggle button:hover:not(.active) {
+  opacity: 0.8;
+}
+
+.package-grid {
+  display: none;
+}
+
+.package-grid.active {
+  display: grid;
+}
+
+/* ── QUANTITY SELECTOR ── */
 
 .polish-card {
   background: var(--white);

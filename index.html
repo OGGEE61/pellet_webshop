@@ -144,8 +144,21 @@
         <!-- Purchase panel -->
         <div class="purchase-panel" data-animate data-delay="2">
 
-          <!-- Package cards -->
-          <div class="package-grid" role="group" aria-label="Wybierz pakiet">
+          <!-- Mode Toggle -->
+          <div class="mode-toggle" role="group" aria-label="Wybierz tryb zamawiania">
+            <button id="mode-bags" class="active" type="button">Pojedyncze worki</button>
+            <button id="mode-pallets" type="button">Całe palety</button>
+          </div>
+
+          <!-- Package cards for BAGS -->
+          <div class="package-grid active" id="grid-bags" role="group" aria-label="Wybierz pakiet worków">
+            <button class="package-card" data-qty="1" data-price="75" id="pkg-1" type="button">
+              <span>Pakiet</span>
+              <strong>1</strong>
+              <span>worek</span>
+              <b>75 PLN</b>
+              <small>75,00 PLN / worek</small>
+            </button>
             <button class="package-card" data-qty="5" data-price="365" id="pkg-5" type="button">
               <span>Pakiet</span>
               <strong>5</strong>
@@ -161,11 +174,30 @@
               <small>41,88 PLN / worek</small>
               <i>Popularne</i>
             </button>
-            <button class="package-card" data-qty="65" data-price="2350" id="pkg-65" type="button">
+          </div>
+
+          <!-- Package cards for PALLETS -->
+          <div class="package-grid" id="grid-pallets" role="group" aria-label="Wybierz pakiet palet">
+            <button class="package-card featured" data-qty="1" data-price="2350" id="pkg-p1" type="button">
               <span>Pełna paleta</span>
-              <strong>65</strong>
-              <span>worków</span>
+              <strong>1</strong>
+              <span>paleta (65 worków)</span>
               <b>2 350 PLN</b>
+              <small>36,15 PLN / worek</small>
+              <i>Najtaniej</i>
+            </button>
+            <button class="package-card" data-qty="2" data-price="4700" id="pkg-p2" type="button">
+              <span>Pełna paleta</span>
+              <strong>2</strong>
+              <span>palety (130 worków)</span>
+              <b>4 700 PLN</b>
+              <small>36,15 PLN / worek</small>
+            </button>
+            <button class="package-card" data-qty="6" data-price="14100" id="pkg-p6" type="button">
+              <span>Pół tira</span>
+              <strong>6</strong>
+              <span>palet (390 worków)</span>
+              <b>14 100 PLN</b>
               <small>36,15 PLN / worek</small>
             </button>
           </div>
