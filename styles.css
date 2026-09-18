@@ -1089,6 +1089,13 @@ footer {
   background: var(--white);
 }
 
+.checkout input.error,
+.checkout select.error,
+.checkout textarea.error {
+  border-color: #d32f2f;
+  background: #fffafa;
+}
+
 .legal,
 .status {
   font-size: 10px;
@@ -1099,6 +1106,10 @@ footer {
 
 .status {
   margin-top: 16px;
+}
+
+.status.error {
+  color: #d32f2f;
 }
 
 /* ── SCRIM ── */

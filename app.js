@@ -130,26 +130,82 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeCart();
 });
 
+// ── Form Validation & Formatters ───────────────────────────
+$("customerPhone").addEventListener("input", (e) => {
+  // Allow only digits, spaces, and plus sign
+  e.target.value = e.target.value.replace(/[^\d\s\+]/g, "");
+});
+
+["customerName", "customerEmail", "customerPhone"].forEach(id => {
+  $(id).addEventListener("input", (e) => {
+    e.target.classList.remove("error");
+    $("orderStatus").textContent = "";
+    $("orderStatus").classList.remove("error");
+  });
+});
+
 // ── Order submission ───────────────────────────────────────
 $("sendOrder").onclick = async () => {
   const status = $("orderStatus");
+  status.classList.remove("error");
 
   if (!state.cartQty) {
     status.textContent = "Dodaj produkt do zamówienia.";
+    status.classList.add("error");
     return;
   }
 
+  const nameInput = $("customerName");
+  const emailInput = $("customerEmail");
+  const phoneInput = $("customerPhone");
+
   const customer = {
-    name:       $("customerName").value.trim(),
-    email:      $("customerEmail").value.trim(),
-    phone:      $("customerPhone").value.trim(),
+    name:       nameInput.value.trim(),
+    email:      emailInput.value.trim(),
+    phone:      phoneInput.value.trim(),
     postcode:   $("postcode").value.trim(),
     notes:      $("notes").value.trim(),
     fulfilment: $("fulfilment").value
   };
 
-  if (!customer.name || !customer.email || !customer.phone) {
-    status.textContent = "Uzupełnij imię i nazwisko, e-mail oraz telefon.";
+  let hasErrors = false;
+  status.textContent = "";
+
+  // Name validation: letters, spaces, hyphens, min 3 chars
+  const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-]+$/;
+  if (!customer.name || !nameRegex.test(customer.name) || customer.name.length < 3) {
+    nameInput.classList.add("error");
+    hasErrors = true;
+  }
+
+  // Email validation: basic regex format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!customer.email || !emailRegex.test(customer.email)) {
+    emailInput.classList.add("error");
+    hasErrors = true;
+  }
+
+  // Phone validation & normalization to +48 XXX XXX XXX
+  let digits = customer.phone.replace(/\D/g, "");
+  let validPhone = false;
+  if (digits.length === 9) {
+    customer.phone = "+48 " + digits.replace(/(\d{3})(?=\d)/g, "$1 ");
+    phoneInput.value = customer.phone; // Update input visually
+    validPhone = true;
+  } else if (digits.length === 11 && digits.startsWith("48")) {
+    customer.phone = "+48 " + digits.substring(2).replace(/(\d{3})(?=\d)/g, "$1 ");
+    phoneInput.value = customer.phone;
+    validPhone = true;
+  }
+
+  if (!customer.phone || !validPhone) {
+    phoneInput.classList.add("error");
+    hasErrors = true;
+  }
+
+  if (hasErrors) {
+    status.textContent = "Proszę poprawić podświetlone pola formularza.";
+    status.classList.add("error");
     return;
   }
 
