@@ -1,0 +1,10 @@
+name = "pellet-webshop"
+pages_build_output_dir = "/"
+
+# Environment variables are set in the Cloudflare Pages dashboard
+# (Settings → Environment Variables), NOT here — never put secrets in this file.
+#
+# Required variables:
+#   RESEND_API_KEY  — your Resend API key (get at resend.com)
+#   ORDER_EMAIL     — the inbox that receives new orders
+#   ORDER_FROM      — your verified Resend sender, e.g. orders@yourdomain.pl
