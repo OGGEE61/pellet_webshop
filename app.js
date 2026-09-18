@@ -121,11 +121,6 @@ $("addToCart").onclick = () => {
   $("zamowienie").showModal();
 };
 
-$("cartOpen").onclick = (e) => {
-  e.preventDefault();
-  $("zamowienie").showModal();
-};
-
 $("closeCheckout").onclick = () => {
   $("zamowienie").close();
 };
