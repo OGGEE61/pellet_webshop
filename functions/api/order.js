@@ -3,7 +3,7 @@ function makeOrderNumber() {
   const date = [
     d.getUTCFullYear(),
     String(d.getUTCMonth() + 1).padStart(2, "0"),
-    String(d.getUTCDate()).padStart(2, "0")
+    String(d.getUTCDate()).padStart(2, "0"),
   ].join("");
   const suffix = crypto.randomUUID().slice(0, 6).toUpperCase();
   return `PEL-${date}-${suffix}`;
@@ -24,36 +24,52 @@ export async function onRequestPost(context) {
     const body = await context.request.json();
     const { customer, items, total_pln, weight_kg, shipping } = body || {};
 
-    if (!customer?.name || !customer?.email || !customer?.phone || !items?.length) {
-      console.error("Validation failed. Missing required fields in body:", { customer, items });
-      return Response.json({ error: "Brak wymaganych danych zamówienia." }, { status: 400 });
+    if (
+      !customer?.name ||
+      !customer?.email ||
+      !customer?.phone ||
+      !items?.length
+    ) {
+      console.error("Validation failed. Missing required fields in body:", {
+        customer,
+        items,
+      });
+      return Response.json(
+        { error: "Brak wymaganych danych zamówienia." },
+        { status: 400 },
+      );
     }
 
     const apiKey = context.env.RESEND_API_KEY;
     const orderEmail = context.env.ORDER_EMAIL;
     const from = context.env.ORDER_FROM;
 
-    console.log("Checking Env Vars:", { 
-      hasApiKey: !!apiKey, 
-      orderEmail: orderEmail, 
-      from: from 
+    console.log("Checking Env Vars:", {
+      hasApiKey: !!apiKey,
+      orderEmail: orderEmail,
+      from: from,
     });
 
     if (!apiKey || !orderEmail || !from) {
       console.error("Missing email configuration");
-      return Response.json({
-        error: "Brak konfiguracji e-mail. Ustaw RESEND_API_KEY, ORDER_EMAIL i ORDER_FROM w Cloudflare."
-      }, { status: 500 });
+      return Response.json(
+        {
+          error:
+            "Brak konfiguracji e-mail. Ustaw RESEND_API_KEY, ORDER_EMAIL i ORDER_FROM w Cloudflare.",
+        },
+        { status: 500 },
+      );
     }
 
     const orderNumber = makeOrderNumber();
-    const fulfilment = shipping?.type === "pickup"
-      ? "Odbiór własny — bezpłatnie"
-      : "Dostawa — koszt transportu do potwierdzenia";
+    const fulfilment =
+      shipping?.type === "pickup"
+        ? "Odbiór własny — bezpłatnie"
+        : "Dostawa — koszt transportu do potwierdzenia";
 
-    const itemText = items.map(i =>
-      `${i.title} — ${i.quantity} szt. × ${i.unit_weight_kg} kg`
-    ).join("\n");
+    const itemText = items
+      .map((i) => `${i.title} — ${i.quantity} szt. × ${i.unit_weight_kg} kg`)
+      .join("\n");
 
     const internalText = [
       `NOWE ZAMÓWIENIE ${orderNumber}`,
@@ -68,7 +84,7 @@ export async function onRequestPost(context) {
       `Wartość pelletu: ${Number(total_pln).toFixed(2)} PLN`,
       `Odbiór: ${fulfilment}`,
       "",
-      `Uwagi: ${customer.notes || "-"}`
+      `Uwagi: ${customer.notes || "-"}`,
     ].join("\n");
 
     const customerText = [
@@ -92,7 +108,7 @@ export async function onRequestPost(context) {
       "Uwaga: koszt dostawy, jeśli wybrano dostawę, zostanie potwierdzony indywidualnie.",
       "",
       "Pozdrawiamy,",
-      "Zespół Pellet"
+      "Zespół Pellet",
     ].join("\n");
 
     const customerHtml = `
@@ -102,7 +118,7 @@ export async function onRequestPost(context) {
         <p>Otrzymaliśmy Twoje zamówienie i skontaktujemy się z Tobą w celu potwierdzenia szczegółów realizacji.</p>
         <hr>
         <h2>Twoje zamówienie</h2>
-        ${items.map(i => `<p><strong>${escapeHtml(i.title)}</strong><br>${i.quantity} szt. × ${i.unit_weight_kg} kg</p>`).join("")}
+        ${items.map((i) => `<p><strong>${escapeHtml(i.title)}</strong><br>${i.quantity} szt. × ${i.unit_weight_kg} kg</p>`).join("")}
         <p>Łączna waga: <strong>${escapeHtml(weight_kg)} kg</strong><br>
         Wartość pelletu: <strong>${escapeHtml(Number(total_pln).toFixed(2))} PLN</strong><br>
         Sposób odbioru: <strong>${escapeHtml(fulfilment)}</strong></p>
@@ -118,31 +134,37 @@ export async function onRequestPost(context) {
     const resend = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         from,
         to: [orderEmail],
         reply_to: customer.email,
         subject: `[${orderNumber}] Nowe zamówienie pelletu — ${weight_kg} kg`,
-        text: internalText
-      })
+        text: internalText,
+      }),
     });
 
     if (!resend.ok) {
       const errorText = await resend.text();
       console.error("Resend internal email failed:", resend.status, errorText);
-      return Response.json({ error: `Błąd wysyłki e-mail do firmy: ${errorText}` }, { status: 502 });
+      return Response.json(
+        { error: `Błąd wysyłki e-mail do firmy: ${errorText}` },
+        { status: 502 },
+      );
     }
     console.log("Internal email sent successfully.");
 
-    console.log("Sending customer confirmation email via Resend to", customer.email);
+    console.log(
+      "Sending customer confirmation email via Resend to",
+      customer.email,
+    );
     const customerMail = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         from,
@@ -150,17 +172,24 @@ export async function onRequestPost(context) {
         reply_to: orderEmail,
         subject: `Potwierdzenie zamówienia ${orderNumber}`,
         text: customerText,
-        html: customerHtml
-      })
+        html: customerHtml,
+      }),
     });
 
     if (!customerMail.ok) {
       const errorText = await customerMail.text();
-      console.error("Resend customer email failed:", customerMail.status, errorText);
-      return Response.json({
-        error: `Zamówienie zapisane, ale nie udało się wysłać potwierdzenia do klienta: ${errorText}`,
-        order_number: orderNumber
-      }, { status: 502 });
+      console.error(
+        "Resend customer email failed:",
+        customerMail.status,
+        errorText,
+      );
+      return Response.json(
+        {
+          error: `Zamówienie zapisane, ale nie udało się wysłać potwierdzenia do klienta: ${errorText}`,
+          order_number: orderNumber,
+        },
+        { status: 502 },
+      );
     }
     console.log("Customer email sent successfully.");
 

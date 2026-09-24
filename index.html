@@ -1,373 +1,627 @@
 <!doctype html>
 <html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pellet Drzewny — Sklep Internetowy | Ciepło, które ma sens</title>
+    <meta
+      name="description"
+      content="Pellet drzewny wysokiej jakości pakowany w worki 15 kg. Zamów online — im więcej zamawiasz, tym mniej płacisz za kilogram. Odbiór własny lub dostawa."
+    />
+    <meta name="theme-color" content="#395d44" />
+    <link rel="icon" href="/assets/logo.svg" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pellet Drzewny — Sklep Internetowy | Ciepło, które ma sens</title>
-  <meta name="description"
-    content="Pellet drzewny wysokiej jakości pakowany w worki 15 kg. Zamów online — im więcej zamawiasz, tym mniej płacisz za kilogram. Odbiór własny lub dostawa.">
-  <meta name="theme-color" content="#395d44">
-  <link rel="icon" href="/assets/logo.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap"
+    />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
 
-  <link rel="stylesheet" href="/styles.css">
-</head>
+  <body>
+    <!-- ── HEADER ── -->
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#top" aria-label="Strona główna">
+        <img src="/assets/logo.svg" alt="Logo" />
+      </a>
+      <nav aria-label="Nawigacja główna">
+        <a href="#produkt">Pellet</a>
+        <a href="#polski-produkt">Polski Produkt</a>
+        <a href="#dlaczego">Dlaczego my</a>
+        <a href="#dostawa">Dostawa</a>
+      </nav>
+      <a
+        href="#produkt"
+        class="cart-button"
+        id="cartOpen"
+        aria-label="Zamówienie"
+      >
+        Złóż zamówienie
+      </a>
+    </header>
 
-<body>
-
-  <!-- ── HEADER ── -->
-  <header class="site-header" id="site-header">
-    <a class="brand" href="#top" aria-label="Strona główna">
-      <img src="/assets/logo.svg" alt="Logo">
-    </a>
-    <nav aria-label="Nawigacja główna">
-      <a href="#produkt">Pellet</a>
-      <a href="#polski-produkt">Polski Produkt</a>
-      <a href="#dlaczego">Dlaczego my</a>
-      <a href="#dostawa">Dostawa</a>
-    </nav>
-    <a href="#produkt" class="cart-button" id="cartOpen" aria-label="Zamówienie">
-      Złóż zamówienie
-    </a>
-  </header>
-
-  <main id="top">
-
-    <!-- ── HERO ── -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-copy">
-        <p class="eyebrow">Pellet Drzewny · 15 kg · ENplus A1</p>
-        <h1 id="hero-heading">Ciepło, które<br><em>ma sens.</em></h1>
-        <p class="lead">Pellet wysokiej jakości, pakowany w worki 15 kg. Im więcej zamawiasz, tym mniej płacisz za
-          kilogram — bez kompromisów.</p>
-        <a class="button button-dark" href="#produkt" id="hero-cta">Zobacz ceny</a>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <strong>500+</strong>
-            <span>Ton dostarczone</span>
-          </div>
-          <div class="hero-stat">
-            <strong>ENplus A1</strong>
-            <span>Certyfikat jakości</span>
-          </div>
-          <div class="hero-stat">
-            <strong>48h</strong>
-            <span>Czas realizacji</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-image" role="img" aria-label="Worki pelletu drzewnego na palecie">
-        <img src="/assets/hero-pellet.jpg" alt="Worki pelletu drzewnego 15 kg ułożone na drewnianej palecie" width="900"
-          height="600" loading="eager" fetchpriority="high">
-        <div class="hero-badge">
-          <strong>Pellet A1</strong>
-          <small>Premium Wood Pellets</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── TRUST BAR ── -->
-    <div class="trust-bar" aria-label="Nasze certyfikaty i gwarancje">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-        Certyfikat ENplus A1
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 6v6l4 2" />
-        </svg>
-        Dostawa w 48h
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-        Odbiór własny bezpłatny
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-        Wilgotność &lt; 10%
-      </div>
-    </div>
-
-    <!-- ── INTRO ── -->
-    <section class="intro" id="dlaczego" aria-labelledby="intro-heading">
-      <p class="eyebrow" data-animate data-delay="1">Prosty wybór</p>
-      <h2 id="intro-heading" data-animate data-delay="2">Kupujesz więcej.<br><em>Płacisz mniej.</em></h2>
-      <p data-animate data-delay="3">Nie komplikujemy zakupów. Wybierz gotowy pakiet albo ustaw własną ilość worków.
-        Cena automatycznie dopasuje się do wielkości zamówienia — bez ukrytych kosztów, bez minimalnej wartości
-        zamówienia.</p>
-    </section>
-
-    <!-- ── PRODUCT ── -->
-    <section class="product-section" id="produkt" aria-labelledby="product-heading">
-      <div class="section-heading" data-animate>
-        <div>
-          <p class="eyebrow">Nasz pellet</p>
-          <h2 id="product-heading">Pellet drzewny<br>15 kg</h2>
-        </div>
-        <p class="muted">Demo handlowe — ceny do potwierdzenia przy składaniu zamówienia.</p>
-      </div>
-
-      <div class="product-layout">
-        <!-- Visual -->
-        <figure class="product-visual" data-animate data-delay="1">
-          <img src="/assets/hero-pellet.jpg" alt="Worki pelletu drzewnego 15 kg na palecie" width="900" height="600"
-            loading="lazy">
-          <div class="product-cert">
-            <strong>ENplus</strong>
-            A1 Certified
-          </div>
-          <div class="product-visual-banner">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Spełnia wszystkie europejskie standardy <strong>ENplus A1</strong></span>
-          </div>
-        </figure>
-
-        <!-- Purchase panel -->
-        <div class="purchase-panel" data-animate data-delay="2">
-
-          <!-- Mode Toggle -->
-          <div class="mode-toggle" role="group" aria-label="Wybierz tryb zamawiania">
-            <button id="mode-bags" class="active" type="button">Pojedyncze worki</button>
-            <button id="mode-pallets" type="button">Całe palety</button>
-          </div>
-
-          <!-- Package cards for BAGS -->
-          <div class="package-grid active" id="grid-bags" role="group" aria-label="Wybierz pakiet worków">
-            <button class="package-card" data-qty="1" data-price="75" id="pkg-1" type="button">
-              <span>Pakiet</span>
-              <strong>1</strong>
-              <span>worek</span>
-              <b>75 PLN</b>
-              <small>75,00 PLN / worek</small>
-            </button>
-            <button class="package-card" data-qty="5" data-price="365" id="pkg-5" type="button">
-              <span>Pakiet</span>
-              <strong>5</strong>
-              <span>worków</span>
-              <b>365 PLN</b>
-              <small>73,00 PLN / worek</small>
-            </button>
-            <button class="package-card featured" data-qty="32" data-price="1340" id="pkg-32" type="button">
-              <span>Pakiet</span>
-              <strong>32</strong>
-              <span>worki</span>
-              <b>1 340 PLN</b>
-              <small>41,88 PLN / worek</small>
-              <i>Popularne</i>
-            </button>
-          </div>
-
-          <!-- Custom quantity -->
-          <div class="quantity-box">
-            <div>
-              <p class="eyebrow">Własna ilość</p>
-              <strong id="tierLabel">Wybierz pakiet</strong>
-              <span id="tierHint">Cena zostanie obliczona automatycznie.</span>
-            </div>
-            <div class="stepper" role="group" aria-label="Ilość worków">
-              <button id="minus" type="button" aria-label="Zmniejsz ilość">−</button>
-              <input type="number" id="qty" min="1" max="100" value="5" aria-label="Ilość worków">
-              <button id="plus" type="button" aria-label="Zwiększ ilość">+</button>
-            </div>
-            <input type="range" id="qtySlider" class="qty-slider" min="1" max="100" value="5"
-              aria-label="Suwak ilości worków">
-          </div>
-
-
-          <div class="price-summary" aria-label="Podsumowanie ceny">
-            <span>Waga</span> <strong id="weight">75 kg</strong>
-            <span>Cena</span> <strong id="price">365 PLN</strong>
-            <span>Cena / kg</span> <strong id="perKg">4,87 PLN</strong>
-          </div>
-
-          <!-- Saving hint -->
-          <div class="saving" id="saving" aria-live="polite">
-            Kup 27 worków więcej, aby wejść w kolejny próg cenowy.
-          </div>
-
-          <button class="button button-dark full" id="addToCart" type="button">
-            Dodaj do zamówienia
-          </button>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── CHECKOUT MODAL ── -->
-    <dialog class="checkout-modal" id="zamowienie" aria-labelledby="checkout-heading">
-      <div class="checkout-container">
-        <div class="checkout-header">
-          <h2 id="checkout-heading">Podsumowanie i Zamówienie</h2>
-          <button id="closeCheckout" type="button" aria-label="Zamknij" class="close-btn">&times;</button>
-        </div>
-        
-        <div id="cartItems" class="cart-items">
-          <p class="empty">Nie wybrano pakietu. Zaznacz ilość powyżej.</p>
-        </div>
-
-        <div class="checkout-form">
-          <div class="checkout-row">
-            <span>Razem do zapłaty</span>
-            <strong id="cartTotal">0 PLN</strong>
-          </div>
-
-          <label>Sposób odbioru
-            <select id="fulfilment">
-              <option value="pickup">Odbiór własny — bezpłatnie</option>
-              <option value="delivery">Dostawa — koszt transportu ustalamy indywidualnie</option>
-            </select>
-          </label>
-
-          <label>Imię i nazwisko
-            <input id="customerName" autocomplete="name" required placeholder="Jan Kowalski">
-          </label>
-          <label>E-mail
-            <input id="customerEmail" type="email" autocomplete="email" required placeholder="jan@kowalski.pl">
-          </label>
-          <label>Telefon
-            <input id="customerPhone" type="tel" autocomplete="tel" required placeholder="+48 600 000 000">
-          </label>
-          <label>Kod pocztowy (do wyceny dostawy)
-            <input id="postcode" placeholder="00-000" autocomplete="postal-code">
-          </label>
-          <label>Uwagi do zamówienia
-            <textarea id="notes" rows="3" placeholder="Dodatkowe informacje..."></textarea>
-          </label>
-
-          <button class="button button-dark full" id="sendOrder" type="button" style="margin-top: 20px;">
-            Wyślij zamówienie
-          </button>
-
-          <p class="legal" style="margin-top: 16px;">
-            Po wysłaniu otrzymasz potwierdzenie e-mail. Szczegóły dostawy i płatności zostaną ustalone indywidualnie przez obsługę sklepu.
+    <main id="top">
+      <!-- ── HERO ── -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <p class="eyebrow">Pellet Drzewny · 15 kg · ENplus A1</p>
+          <h1 id="hero-heading">Ciepło, które<br /><em>ma sens.</em></h1>
+          <p class="lead">
+            Pellet wysokiej jakości, pakowany w worki 15 kg. Im więcej
+            zamawiasz, tym mniej płacisz za kilogram — bez kompromisów.
           </p>
-          <p id="orderStatus" class="status"></p>
+          <a class="button button-dark" href="#produkt" id="hero-cta"
+            >Zobacz ceny</a
+          >
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>500+</strong>
+              <span>Ton dostarczone</span>
+            </div>
+            <div class="hero-stat">
+              <strong>ENplus A1</strong>
+              <span>Certyfikat jakości</span>
+            </div>
+            <div class="hero-stat">
+              <strong>48h</strong>
+              <span>Czas realizacji</span>
+            </div>
+          </div>
         </div>
+
+        <div
+          class="hero-image"
+          role="img"
+          aria-label="Worki pelletu drzewnego na palecie"
+        >
+          <img
+            src="/assets/hero-pellet.jpg"
+            alt="Worki pelletu drzewnego 15 kg ułożone na drewnianej palecie"
+            width="900"
+            height="600"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="hero-badge">
+            <strong>Pellet A1</strong>
+            <small>Premium Wood Pellets</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TRUST BAR ── -->
+      <div class="trust-bar" aria-label="Nasze certyfikaty i gwarancje">
+        <div class="trust-item">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Certyfikat ENplus A1
+        </div>
+        <div class="trust-item">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          Dostawa w 48h
+        </div>
+        <div class="trust-item">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Odbiór własny bezpłatny
+        </div>
+        <div class="trust-item">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Wilgotność &lt; 10%
+        </div>
+      </div>
+
+      <!-- ── INTRO ── -->
+      <section class="intro" id="dlaczego" aria-labelledby="intro-heading">
+        <p class="eyebrow" data-animate data-delay="1">Prosty wybór</p>
+        <h2 id="intro-heading" data-animate data-delay="2">
+          Kupujesz więcej.<br /><em>Płacisz mniej.</em>
+        </h2>
+        <p data-animate data-delay="3">
+          Nie komplikujemy zakupów. Wybierz gotowy pakiet albo ustaw własną
+          ilość worków. Cena automatycznie dopasuje się do wielkości zamówienia
+          — bez ukrytych kosztów, bez minimalnej wartości zamówienia.
+        </p>
+      </section>
+
+      <!-- ── PRODUCT ── -->
+      <section
+        class="product-section"
+        id="produkt"
+        aria-labelledby="product-heading"
+      >
+        <div class="section-heading" data-animate>
+          <div>
+            <p class="eyebrow">Nasz pellet</p>
+            <h2 id="product-heading">Pellet drzewny<br />15 kg</h2>
+          </div>
+          <p class="muted">
+            Demo handlowe — ceny do potwierdzenia przy składaniu zamówienia.
+          </p>
+        </div>
+
+        <div class="product-layout">
+          <!-- Visual -->
+          <figure class="product-visual" data-animate data-delay="1">
+            <img
+              src="/assets/hero-pellet.jpg"
+              alt="Worki pelletu drzewnego 15 kg na palecie"
+              width="900"
+              height="600"
+              loading="lazy"
+            />
+            <div class="product-cert">
+              <strong>ENplus</strong>
+              A1 Certified
+            </div>
+            <div class="product-visual-banner">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span
+                >Spełnia wszystkie europejskie standardy
+                <strong>ENplus A1</strong></span
+              >
+            </div>
+          </figure>
+
+          <!-- Purchase panel -->
+          <div class="purchase-panel" data-animate data-delay="2">
+            <!-- Mode Toggle -->
+            <div
+              class="mode-toggle"
+              role="group"
+              aria-label="Wybierz tryb zamawiania"
+            >
+              <button id="mode-bags" class="active" type="button">
+                Pojedyncze worki
+              </button>
+              <button id="mode-pallets" type="button">Całe palety</button>
+            </div>
+
+            <!-- Package cards for BAGS -->
+            <div
+              class="package-grid active"
+              id="grid-bags"
+              role="group"
+              aria-label="Wybierz pakiet worków"
+            >
+              <button
+                class="package-card"
+                data-qty="1"
+                data-price="75"
+                id="pkg-1"
+                type="button"
+              >
+                <span>Pakiet</span>
+                <strong>1</strong>
+                <span>worek</span>
+                <b>75 PLN</b>
+                <small>75,00 PLN / worek</small>
+              </button>
+              <button
+                class="package-card"
+                data-qty="5"
+                data-price="365"
+                id="pkg-5"
+                type="button"
+              >
+                <span>Pakiet</span>
+                <strong>5</strong>
+                <span>worków</span>
+                <b>365 PLN</b>
+                <small>73,00 PLN / worek</small>
+              </button>
+              <button
+                class="package-card featured"
+                data-qty="32"
+                data-price="1340"
+                id="pkg-32"
+                type="button"
+              >
+                <span>Pakiet</span>
+                <strong>32</strong>
+                <span>worki</span>
+                <b>1 340 PLN</b>
+                <small>41,88 PLN / worek</small>
+                <i>Popularne</i>
+              </button>
+            </div>
+
+            <!-- Custom quantity -->
+            <div class="quantity-box">
+              <div>
+                <p class="eyebrow">Własna ilość</p>
+                <strong id="tierLabel">Wybierz pakiet</strong>
+                <span id="tierHint"
+                  >Cena zostanie obliczona automatycznie.</span
+                >
+              </div>
+              <div class="stepper" role="group" aria-label="Ilość worków">
+                <button id="minus" type="button" aria-label="Zmniejsz ilość">
+                  −
+                </button>
+                <input
+                  type="number"
+                  id="qty"
+                  min="1"
+                  max="100"
+                  value="5"
+                  aria-label="Ilość worków"
+                />
+                <button id="plus" type="button" aria-label="Zwiększ ilość">
+                  +
+                </button>
+              </div>
+              <input
+                type="range"
+                id="qtySlider"
+                class="qty-slider"
+                min="1"
+                max="100"
+                value="5"
+                aria-label="Suwak ilości worków"
+              />
+            </div>
+
+            <div class="price-summary" aria-label="Podsumowanie ceny">
+              <span>Waga</span> <strong id="weight">75 kg</strong>
+              <span>Cena</span> <strong id="price">365 PLN</strong>
+              <span>Cena / kg</span> <strong id="perKg">4,87 PLN</strong>
+            </div>
+
+            <!-- Saving hint -->
+            <div class="saving" id="saving" aria-live="polite">
+              Kup 27 worków więcej, aby wejść w kolejny próg cenowy.
+            </div>
+
+            <button
+              class="button button-dark full"
+              id="addToCart"
+              type="button"
+            >
+              Dodaj do zamówienia
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CHECKOUT MODAL ── -->
+      <dialog
+        class="checkout-modal"
+        id="zamowienie"
+        aria-labelledby="checkout-heading"
+      >
+        <div class="checkout-container">
+          <div class="checkout-header">
+            <h2 id="checkout-heading">Podsumowanie i Zamówienie</h2>
+            <button
+              id="closeCheckout"
+              type="button"
+              aria-label="Zamknij"
+              class="close-btn"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div id="cartItems" class="cart-items">
+            <p class="empty">Nie wybrano pakietu. Zaznacz ilość powyżej.</p>
+          </div>
+
+          <div class="checkout-form">
+            <div class="checkout-row">
+              <span>Razem do zapłaty</span>
+              <strong id="cartTotal">0 PLN</strong>
+            </div>
+
+            <label
+              >Sposób odbioru
+              <select id="fulfilment">
+                <option value="pickup">Odbiór własny — bezpłatnie</option>
+                <option value="delivery">
+                  Dostawa — koszt transportu ustalamy indywidualnie
+                </option>
+              </select>
+            </label>
+
+            <label
+              >Imię i nazwisko
+              <input
+                id="customerName"
+                autocomplete="name"
+                required
+                placeholder="Jan Kowalski"
+              />
+            </label>
+            <label
+              >E-mail
+              <input
+                id="customerEmail"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="jan@kowalski.pl"
+              />
+            </label>
+            <label
+              >Telefon
+              <input
+                id="customerPhone"
+                type="tel"
+                autocomplete="tel"
+                required
+                placeholder="+48 600 000 000"
+              />
+            </label>
+            <label
+              >Kod pocztowy (do wyceny dostawy)
+              <input
+                id="postcode"
+                placeholder="00-000"
+                autocomplete="postal-code"
+              />
+            </label>
+            <label
+              >Uwagi do zamówienia
+              <textarea
+                id="notes"
+                rows="3"
+                placeholder="Dodatkowe informacje..."
+              ></textarea>
+            </label>
+
+            <button
+              class="button button-dark full"
+              id="sendOrder"
+              type="button"
+              style="margin-top: 20px"
+            >
+              Wyślij zamówienie
+            </button>
+
+            <p class="legal" style="margin-top: 16px">
+              Po wysłaniu otrzymasz potwierdzenie e-mail. Szczegóły dostawy i
+              płatności zostaną ustalone indywidualnie przez obsługę sklepu.
+            </p>
+            <p id="orderStatus" class="status"></p>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- ── POLISH PRODUCT SHOWCASE ── -->
+      <section
+        class="polish-product"
+        id="polski-produkt"
+        aria-labelledby="polish-heading"
+      >
+        <div class="polish-header" data-animate>
+          <p class="eyebrow">100% Polski Produkt</p>
+          <h2 id="polish-heading">
+            Czyste ciepło z polskich lasów,<br /><em
+              >produkowane w Morągu i Piszu.</em
+            >
+          </h2>
+          <p class="lead-text">
+            Nasz pellet powstaje w 100% w Polsce z wyselekcjonowanego surowca
+            drzewnego. Bez chemicznych lepiszczy czy dodatków — wyłącznie
+            czyste, mocno sprasowane drewno najwyższej jakości.
+          </p>
+        </div>
+
+        <div class="polish-grid">
+          <div class="polish-card" data-animate data-delay="1">
+            <div class="polish-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <h3>Produkcja w Morągu & Piszu</h3>
+            <p>
+              Wytwarzany w nowoczesnych polskich zakładach produkcyjnych Paged
+              na Mazurach, z gwarancją powtarzalnej jakości każdej partii.
+            </p>
+          </div>
+
+          <div class="polish-card" data-animate data-delay="2">
+            <div class="polish-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>100% Polskie Drewno</h3>
+            <p>
+              Wykorzystujemy wyłącznie starannie wyselekcjonowane wióry i
+              trociny z polskiego surowca drzewnego pochodzącego z
+              certyfikowanych lasów.
+            </p>
+          </div>
+
+          <div class="polish-card" data-animate data-delay="3">
+            <div class="polish-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <h3>Klasa ENplus A1</h3>
+            <p>
+              Certyfikowana jakość spełniająca najbardziej rygorystyczne normy
+              europejskie. Wysoka kaloryczność i stabilna sprawność cieplna.
+            </p>
+          </div>
+
+          <div class="polish-card" data-animate data-delay="4">
+            <div class="polish-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"
+                />
+              </svg>
+            </div>
+            <h3>Bezpieczeństwo Kotła</h3>
+            <p>
+              Znikoma zawartość popiołu (&lt; 0,7%) chroni paliwo i palnik przed
+              spiekami, wydłużając żywotność instalacji grzewczej.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── DELIVERY ── -->
+      <section class="delivery" id="dostawa" aria-labelledby="delivery-heading">
+        <div data-animate>
+          <p class="eyebrow">Odbiór</p>
+          <h2 id="delivery-heading">
+            Ty wybierasz,<br /><em>jak odbierasz.</em>
+          </h2>
+        </div>
+        <div class="delivery-copy" data-animate data-delay="2">
+          <div>
+            <span>01</span>
+            <strong>Odbiór własny</strong>
+            <p>
+              Bezpłatny odbiór. Szczegóły miejsca i terminu potwierdzimy po
+              złożeniu zamówienia.
+            </p>
+          </div>
+          <div>
+            <span>02</span>
+            <strong>Dostawa</strong>
+            <p>
+              Koszt transportu zależy od lokalizacji i liczby palet. Podaj kod
+              pocztowy — wycenimy dostawę przed realizacją.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-brand">
+        <strong>Pellet Drzewny</strong>
+        <span>Premium Wood Pellets &middot; Demo webshop</span>
+      </div>
+      <address class="footer-meta">
+        <strong>Paged Plywood S.A.</strong>
+        <span>ul. Mazurska 1, 14-300 Mor&#x105;g, Polska</span>
+        <span
+          >NIP: 741-137-84-88 &middot; REGON: 510445569 &middot; KRS:
+          0000010478</span
+        >
+      </address>
+    </footer>
+
+    <dialog id="successModal" class="success-modal">
+      <div class="modal-content">
+        <div class="success-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3>Zamówienie przyjęte</h3>
+        <p>Proszę czekać, trwa przekierowanie do podsumowania...</p>
       </div>
     </dialog>
 
-    <!-- ── POLISH PRODUCT SHOWCASE ── -->
-    <section class="polish-product" id="polski-produkt" aria-labelledby="polish-heading">
-      <div class="polish-header" data-animate>
-        <p class="eyebrow">100% Polski Produkt</p>
-        <h2 id="polish-heading">Czyste ciepło z polskich lasów,<br><em>produkowane w Morągu i Piszu.</em></h2>
-        <p class="lead-text">
-          Nasz pellet powstaje w 100% w Polsce z wyselekcjonowanego surowca drzewnego. Bez chemicznych lepiszczy czy dodatków — wyłącznie czyste, mocno sprasowane drewno najwyższej jakości.
-        </p>
-      </div>
-
-      <div class="polish-grid">
-        <div class="polish-card" data-animate data-delay="1">
-          <div class="polish-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <h3>Produkcja w Morągu & Piszu</h3>
-          <p>Wytwarzany w nowoczesnych polskich zakładach produkcyjnych Paged na Mazurach, z gwarancją powtarzalnej jakości każdej partii.</p>
-        </div>
-
-        <div class="polish-card" data-animate data-delay="2">
-          <div class="polish-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3>100% Polskie Drewno</h3>
-          <p>Wykorzystujemy wyłącznie starannie wyselekcjonowane wióry i trociny z polskiego surowca drzewnego pochodzącego z certyfikowanych lasów.</p>
-        </div>
-
-        <div class="polish-card" data-animate data-delay="3">
-          <div class="polish-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <h3>Klasa ENplus A1</h3>
-          <p>Certyfikowana jakość spełniająca najbardziej rygorystyczne normy europejskie. Wysoka kaloryczność i stabilna sprawność cieplna.</p>
-        </div>
-
-        <div class="polish-card" data-animate data-delay="4">
-          <div class="polish-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-            </svg>
-          </div>
-          <h3>Bezpieczeństwo Kotła</h3>
-          <p>Znikoma zawartość popiołu (&lt; 0,7%) chroni paliwo i palnik przed spiekami, wydłużając żywotność instalacji grzewczej.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── DELIVERY ── -->
-    <section class="delivery" id="dostawa" aria-labelledby="delivery-heading">
-      <div data-animate>
-        <p class="eyebrow">Odbiór</p>
-        <h2 id="delivery-heading">Ty wybierasz,<br><em>jak odbierasz.</em></h2>
-      </div>
-      <div class="delivery-copy" data-animate data-delay="2">
-        <div>
-          <span>01</span>
-          <strong>Odbiór własny</strong>
-          <p>Bezpłatny odbiór. Szczegóły miejsca i terminu potwierdzimy po złożeniu zamówienia.</p>
-        </div>
-        <div>
-          <span>02</span>
-          <strong>Dostawa</strong>
-          <p>Koszt transportu zależy od lokalizacji i liczby palet. Podaj kod pocztowy — wycenimy dostawę przed
-            realizacją.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-brand">
-      <strong>Pellet Drzewny</strong>
-      <span>Premium Wood Pellets &middot; Demo webshop</span>
-    </div>
-    <address class="footer-meta">
-      <strong>Paged Plywood S.A.</strong>
-      <span>ul. Mazurska 1, 14-300 Mor&#x105;g, Polska</span>
-      <span>NIP: 741-137-84-88 &middot; REGON: 510445569 &middot; KRS: 0000010478</span>
-    </address>
-  </footer>
-
-  <dialog id="successModal" class="success-modal">
-    <div class="modal-content">
-      <div class="success-icon">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-        </svg>
-      </div>
-      <h3>Zamówienie przyjęte</h3>
-      <p>Proszę czekać, trwa przekierowanie do podsumowania...</p>
-    </div>
-  </dialog>
-
-  <script src="/app.js"></script>
-</body>
-
+    <script src="/app.js"></script>
+  </body>
 </html>

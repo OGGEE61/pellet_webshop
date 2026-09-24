@@ -58,7 +58,6 @@ The frontend is deliberately kept simple so the product data can later be moved 
 
 For production, Shopify should become the source of truth for products, inventory, orders and checkout.
 
-
 ## Email workflow
 
 After checkout, two separate emails are sent through Resend:

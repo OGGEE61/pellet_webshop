@@ -1,139 +1,161 @@
 <!doctype html>
 <html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Potwierdzenie Zamówienia | Pellet Drzewny</title>
+    <meta name="theme-color" content="#395d44" />
+    <link rel="icon" href="/assets/logo.svg" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Potwierdzenie Zamówienia | Pellet Drzewny</title>
-  <meta name="theme-color" content="#395d44">
-  <link rel="icon" href="/assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap">
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .confirmation-page {
+        min-height: calc(100vh - var(--header-h));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10vw 5vw;
+        background: var(--cream);
+      }
 
-  <link rel="stylesheet" href="/styles.css">
-  <style>
-    .confirmation-page {
-      min-height: calc(100vh - var(--header-h));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10vw 5vw;
-      background: var(--cream);
-    }
-    
-    .confirmation-card {
-      background: var(--white);
-      padding: 64px 48px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-    }
+      .confirmation-card {
+        background: var(--white);
+        padding: 64px 48px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
 
-    .confirmation-card h1 {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--ink);
-      margin: 24px 0 16px;
-    }
+      .confirmation-card h1 {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--ink);
+        margin: 24px 0 16px;
+      }
 
-    .confirmation-card p {
-      font-size: 16px;
-      color: var(--muted);
-      margin: 0 0 32px;
-      line-height: 1.6;
-    }
+      .confirmation-card p {
+        font-size: 16px;
+        color: var(--muted);
+        margin: 0 0 32px;
+        line-height: 1.6;
+      }
 
-    .order-number {
-      background: rgba(57, 93, 68, 0.05);
-      border: 1px dashed rgba(57, 93, 68, 0.3);
-      padding: 24px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 40px;
-    }
+      .order-number {
+        background: rgba(57, 93, 68, 0.05);
+        border: 1px dashed rgba(57, 93, 68, 0.3);
+        padding: 24px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 40px;
+      }
 
-    .order-number span {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
+      .order-number span {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green);
+        margin-bottom: 8px;
+      }
 
-    .order-number strong {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--ink);
-      letter-spacing: .02em;
-    }
-  </style>
-</head>
+      .order-number strong {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--ink);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <header class="site-header" id="site-header">
+      <a class="brand" href="/" aria-label="Strona główna">
+        <img src="/assets/logo.svg" alt="Logo" />
+      </a>
+      <a href="/" class="cart-button">Powrót do sklepu</a>
+    </header>
 
-  <header class="site-header" id="site-header">
-    <a class="brand" href="/" aria-label="Strona główna">
-      <img src="/assets/logo.svg" alt="Logo">
-    </a>
-    <a href="/" class="cart-button">Powrót do sklepu</a>
-  </header>
+    <main id="top">
+      <section class="confirmation-page">
+        <div class="confirmation-card">
+          <div class="success-icon" style="margin: 0 auto 24px">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
 
-  <main id="top">
-    <section class="confirmation-page">
-      <div class="confirmation-card">
-        <div class="success-icon" style="margin: 0 auto 24px;">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
+          <h1>Dziękujemy za zamówienie</h1>
+          <p>
+            Twoje zamówienie zostało pomyślnie przyjęte. Potwierdzenie zostało
+            wysłane na adres e-mail. Skontaktujemy się z Tobą w sprawie
+            szczegółów realizacji.
+          </p>
+
+          <div class="order-number">
+            <span>Numer zamówienia</span>
+            <strong id="orderIdDisplay">...</strong>
+          </div>
+
+          <a href="/" class="button button-dark">Wróć na stronę główną</a>
         </div>
-        
-        <h1>Dziękujemy za zamówienie</h1>
-        <p>Twoje zamówienie zostało pomyślnie przyjęte. Potwierdzenie zostało wysłane na adres e-mail. Skontaktujemy się z Tobą w sprawie szczegółów realizacji.</p>
-        
-        <div class="order-number">
-          <span>Numer zamówienia</span>
-          <strong id="orderIdDisplay">...</strong>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Obsługa Klienta</h3>
+          <p>Masz pytania dotyczące zamówienia?</p>
+          <p>
+            <strong
+              ><a href="mailto:kontakt@pagedplywood.com"
+                >kontakt@pagedplywood.com</a
+              ></strong
+            ><br />
+            <strong><a href="tel:+48000000000">+48 000 000 000</a></strong>
+          </p>
         </div>
-
-        <a href="/" class="button button-dark">Wróć na stronę główną</a>
+        <div class="footer-col">
+          <h3>Zaufanie i jakość</h3>
+          <p>Produkt certyfikowany. Ekologiczny proces suszenia i produkcji.</p>
+        </div>
       </div>
-    </section>
-  </main>
+      <address class="footer-meta">
+        <strong>Paged Plywood S.A.</strong>
+        <span>ul. Mazurska 1, 14-300 Morąg, Polska</span>
+        <span
+          >NIP: 741-137-84-88 &middot; REGON: 510445569 &middot; KRS:
+          0000010478</span
+        >
+      </address>
+    </footer>
 
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>Obsługa Klienta</h3>
-        <p>Masz pytania dotyczące zamówienia?</p>
-        <p><strong><a href="mailto:kontakt@pagedplywood.com">kontakt@pagedplywood.com</a></strong><br>
-          <strong><a href="tel:+48000000000">+48 000 000 000</a></strong></p>
-      </div>
-      <div class="footer-col">
-        <h3>Zaufanie i jakość</h3>
-        <p>Produkt certyfikowany. Ekologiczny proces suszenia i produkcji.</p>
-      </div>
-    </div>
-    <address class="footer-meta">
-      <strong>Paged Plywood S.A.</strong>
-      <span>ul. Mazurska 1, 14-300 Morąg, Polska</span>
-      <span>NIP: 741-137-84-88 &middot; REGON: 510445569 &middot; KRS: 0000010478</span>
-    </address>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      const orderId = params.get("order") || "Brak numeru";
-      document.getElementById("orderIdDisplay").textContent = orderId;
-    });
-  </script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("order") || "Brak numeru";
+        document.getElementById("orderIdDisplay").textContent = orderId;
+      });
+    </script>
+  </body>
 </html>
